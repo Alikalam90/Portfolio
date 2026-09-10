@@ -13,7 +13,7 @@
   --line: #deddd9;
 
   --accent: #aa3bff;
-  --accent-soft: rgba(170, 59, 255, 0.21);
+  --accent-soft: rgba(170, 59, 255, 0.28);
 
   --dark-section: #08060d;
 
@@ -66,7 +66,7 @@
 
   --accent: #c084fc;
 
-  --accent-soft: rgba(192, 132, 252, 0.25);
+  --accent-soft: rgba(192, 132, 252, 0.28);
 
   --dark-section: #050409;
 }
@@ -114,6 +114,7 @@ a {
 
 button {
   border: none;
+  cursor: none;
 }
 
 a {
@@ -132,7 +133,7 @@ a {
 
 
 /* =========================================================
-   CURSOR GLOW
+   CURSOR — PURPLE GLOW
    ========================================================= */
 
 .cursor-glow {
@@ -141,12 +142,12 @@ a {
   top: 0;
   left: 0;
 
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
 
   pointer-events: none;
 
-  z-index: 9999;
+  z-index: 9998;
 
   opacity: 0;
 
@@ -160,10 +161,10 @@ a {
     radial-gradient(
       circle,
       var(--accent-soft),
-      transparent 70%
+      transparent 65%
     );
 
-  filter: blur(10px);
+  filter: blur(20px);
 
   transition:
     opacity 0.4s ease;
@@ -171,10 +172,74 @@ a {
   will-change: transform;
 }
 
+
+/* =========================================================
+   CURSOR — HOLLOW INVERTED DISC
+   ========================================================= */
+
+html,
+body,
+a,
+button,
+input,
+textarea,
+select,
+[role="button"] {
+  cursor: none;
+}
+
+.cursor-disc {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 44px;
+  height: 44px;
+
+  border: 5px solid #ffffff;
+  border-radius: 50%;
+
+  background: transparent;
+
+  pointer-events: none;
+
+  z-index: 9999;
+
+  opacity: 0;
+
+  mix-blend-mode: difference;
+
+  transform:
+    translate(
+      calc(var(--cursor-x, 50vw) - 50%),
+      calc(var(--cursor-y, 50vh) - 50%)
+    );
+
+  transition:
+    opacity 0.3s ease;
+
+  will-change: transform;
+}
+
 @media (max-width: 768px) {
-  .cursor-glow {
+
+  .cursor-glow,
+  .cursor-disc {
     display: none;
   }
+
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: auto;
+  }
+
 }
 
 
@@ -329,7 +394,7 @@ a {
 
   color: var(--main-text);
 
-  cursor: pointer;
+  cursor: none;
 
   font-family: var(--mono);
 
@@ -1146,7 +1211,7 @@ a {
   border-top:
     1px solid var(--line);
 
-  cursor: default;
+  cursor: none;
 }
 
 .technology-main {

@@ -8,11 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 const experiments = [
   {
     number: "01",
-    title: "INTERACTIVE WEB",
+    title: "INTERACTIVE WEB PORTFOLIO",
     description:
       "Exploring how animation, interaction and thoughtful UI can turn a simple website into an experience.",
     stack: ["REACT", "GSAP", "UI / UX"],
-    type: "INTERACTION",
+    type: "PORTFOLIO WEBSITE",
+    link: "https://flipstudio1-tan.vercel.app/",
   },
   {
     number: "02",
@@ -21,6 +22,7 @@ const experiments = [
       "Small experiments exploring machine learning, intelligent systems and practical AI applications.",
     stack: ["PYTHON", "AI / ML"],
     type: "AI / ML",
+    link: "#",
   },
   {
     number: "03",
@@ -29,6 +31,7 @@ const experiments = [
       "Exploring how interfaces and databases can work together to turn structured data into useful experiences.",
     stack: ["SQL", "REACT", "DATABASE"],
     type: "SYSTEM",
+    link: "#",
   },
   {
     number: "04",
@@ -37,11 +40,13 @@ const experiments = [
       "Experiments with timing, transitions and interaction to understand what makes interfaces feel alive.",
     stack: ["GSAP", "FRAMER MOTION"],
     type: "EXPERIMENT",
+    link: "#",
   },
 ];
 
 function App() {
   const appRef = useRef(null);
+  const cursorRef = useRef(null);
   const glowRef = useRef(null);
 
   const [darkMode, setDarkMode] = useState(true);
@@ -58,13 +63,19 @@ function App() {
   }, [darkMode]);
 
   /* =========================================================
-     CURSOR GLOW
+     CURSOR — PURPLE GLOW + HOLLOW INVERTED DISC
      ========================================================= */
 
   useLayoutEffect(() => {
+    const cursor = cursorRef.current;
     const glow = glowRef.current;
 
     const handlePointerMove = (e) => {
+      if (cursor) {
+        cursor.style.setProperty("--cursor-x", `${e.clientX}px`);
+        cursor.style.setProperty("--cursor-y", `${e.clientY}px`);
+        cursor.style.opacity = "1";
+      }
       if (glow) {
         glow.style.setProperty("--cursor-x", `${e.clientX}px`);
         glow.style.setProperty("--cursor-y", `${e.clientY}px`);
@@ -73,6 +84,7 @@ function App() {
     };
 
     const handlePointerLeave = () => {
+      if (cursor) cursor.style.opacity = "0";
       if (glow) glow.style.opacity = "0";
     };
 
@@ -335,10 +347,11 @@ function App() {
     <main ref={appRef}>
 
       {/* =====================================================
-          CURSOR GLOW
+          CURSOR — PURPLE GLOW + HOLLOW INVERTED DISC
           ===================================================== */}
 
       <div className="cursor-glow" ref={glowRef} aria-hidden="true"></div>
+      <div className="cursor-disc" ref={cursorRef} aria-hidden="true"></div>
 
 
       {/* =====================================================
@@ -885,9 +898,13 @@ function App() {
 
           {experiments.map((experiment) => (
 
-            <article
+            <a
               className="experiment-card"
               key={experiment.number}
+              href={experiment.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", color: "inherit" }}
             >
 
               <div className="experiment-top">
@@ -949,7 +966,7 @@ function App() {
 
               </div>
 
-            </article>
+            </a>
 
           ))}
 
@@ -957,14 +974,6 @@ function App() {
 
 
         <div className="experiments-note">
-
-          <span>
-            THESE ARE EXPERIMENTS —
-          </span>
-
-          <span>
-            THE REAL WORK WILL COME HERE.
-          </span>
 
         </div>
 
@@ -1041,7 +1050,6 @@ function App() {
               <span>
                 ↗
               </span>
-
             </a>
 
 
@@ -1057,7 +1065,6 @@ function App() {
               <span>
                 ↗
               </span>
-
             </a>
 
 
@@ -1071,7 +1078,6 @@ function App() {
               <span>
                 ↗
               </span>
-
             </a>
 
           </div>
