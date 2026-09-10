@@ -355,6 +355,34 @@ function App() {
 
 
       {/* =====================================================
+          FLOATING THEME TOGGLE (bottom-left, fixed)
+          ===================================================== */}
+
+      <button
+        className="theme-toggle"
+        type="button"
+        onClick={() => setDarkMode((previous) => !previous)}
+        aria-label={
+          darkMode
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+        }
+      >
+        <span
+          className={`theme-icon ${
+            darkMode ? "is-dark" : "is-light"
+          }`}
+        >
+          {darkMode ? "☾" : "☀"}
+        </span>
+
+        <span className="theme-text">
+          {darkMode ? "DARK" : "LIGHT"}
+        </span>
+      </button>
+
+
+      {/* =====================================================
           NAVIGATION
           ===================================================== */}
 
@@ -369,36 +397,7 @@ function App() {
           AVAILABLE FOR OPPORTUNITIES
         </div>
 
-        <div className="nav-actions">
-
-          <div className="nav-index">
-            01 / 05
-          </div>
-
-          <button
-            className="theme-toggle"
-            type="button"
-            onClick={() => setDarkMode((previous) => !previous)}
-            aria-label={
-              darkMode
-                ? "Switch to light mode"
-                : "Switch to dark mode"
-            }
-          >
-            <span
-              className={`theme-icon ${
-                darkMode ? "is-dark" : "is-light"
-              }`}
-            >
-              {darkMode ? "☾" : "☀"}
-            </span>
-
-            <span className="theme-text">
-              {darkMode ? "DARK" : "LIGHT"}
-            </span>
-          </button>
-
-        </div>
+        <div className="nav-actions"></div>
 
       </nav>
 

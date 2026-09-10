@@ -13,7 +13,7 @@
   --line: #deddd9;
 
   --accent: #aa3bff;
-  --accent-soft: rgba(170, 59, 255, 0.28);
+  --accent-soft: rgba(170, 59, 255, 0.21);
 
   --dark-section: #08060d;
 
@@ -66,7 +66,7 @@
 
   --accent: #c084fc;
 
-  --accent-soft: rgba(192, 132, 252, 0.28);
+  --accent-soft: rgba(192, 132, 252, 0.25);
 
   --dark-section: #050409;
 }
@@ -123,6 +123,27 @@ a {
 
 
 /* =========================================================
+   HIDE SCROLLBAR (page still scrolls normally)
+   ========================================================= */
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
    ROOT
    ========================================================= */
 
@@ -142,8 +163,8 @@ a {
   top: 0;
   left: 0;
 
-  width: 400px;
-  height: 400px;
+  width: 260px;
+  height: 260px;
 
   pointer-events: none;
 
@@ -364,11 +385,16 @@ select,
 
 
 /* =========================================================
-   DARK / LIGHT TOGGLE
+   FLOATING THEME TOGGLE (bottom-left, fixed)
    ========================================================= */
 
 .theme-toggle {
-  position: relative;
+  position: fixed;
+
+  right: 28px;
+  top: 28px;
+
+  z-index: 9500;
 
   display: flex;
 
@@ -403,6 +429,11 @@ select,
   letter-spacing: 0.08em;
 
   overflow: hidden;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18);
 
   transition:
     background-color 0.45s ease,
@@ -2120,9 +2151,16 @@ select,
 
     width: 40px;
 
-    padding: 0;
-  }
+    height: 40px;
 
+    right: 20px;
+    top: 20px;
+
+    padding: 0;
+
+    border-radius: 50%;
+  }
+  
   .theme-text {
     display: none;
   }
